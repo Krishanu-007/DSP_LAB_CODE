@@ -11,7 +11,7 @@ ylabel("Signal Strength");
 w=-pi:0.001:pi; %defining the angular frequency range
 y=freqz(Wr,1,w); %computing the frequency response of the window function
 subplot(3,1,2);
-plot(w/(2*pi),y); %plotting the frequency response
+plot((w/2*pi),y); %plotting the frequency response
 xlabel("Frequency");
 ylabel("Strength");
 subplot(3,1,3);
