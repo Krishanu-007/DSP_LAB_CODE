@@ -12,7 +12,7 @@ hd=sin((n-a+b)*wc)./((n-a+b)*pi); %low pass filter equation along with the adjus
 hd1=hd.*Wr'; %getting the actual equation of the filter according to the window function procedure
 y=freqz(hd1,1,w); %getting the frequency response
 subplot(2,1,1);
-plot(w/(2*pi),abs(y));% plotting the frequency response
+plot((w/2*pi),abs(y));% plotting the frequency response
 grid on;
 subplot(2,1,2);
 plot(w/pi,20.*log10(abs(y))); %plotting the frequency response in log scale
