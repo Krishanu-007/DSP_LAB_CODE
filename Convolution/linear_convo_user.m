@@ -19,19 +19,21 @@ xlabel('time');
 ylabel('amp');
 title('h[n] impulse response sequence');
 
-M = length(x);
-N = length(h);
+M = length(x);  %length of input sequence
+N = length(h);  %length of impulse response
 L = M + N - 1;
-% Pad the sequences with zeros to make them of length L
-x_padded = [x, zeros(1, L - M)];
-h_padded = [h, zeros(1, L - N)];
-% Perform linear convolution using the convolution sum
-y = zeros(1, L);
-for n = 1:L
-  for k = 1:n
-    if k <= M && n - k + 1 <= N %condition that omits the negative indices
-      y(n) = y(n) + x_padded(k) * h_padded(n - k + 1);
-    end
-  end
+y=zeros(1,L);
+for n=1:L  %loop for analytical method
+  k_min=max(1,n-N+1); %inner loop condition to avoid negative indices
+  k_max=min(n,M);
+  for k=k_min:k_max
+    y(n)=y(n)+x(k)*h(n-k+1); 
+  endfor
 end
-y
+n=0:length(y)-1;  %limiting the time variable
+subplot(2,2,3);
+stem(n,y); %plotting the convoluted sequence
+grid on
+xlabel('time');
+ylabel('amp');
+title('y[n] linear convoluted sequence');
